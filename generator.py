@@ -8,6 +8,7 @@ def opendocx():
         run = doc.add_paragraph().add_run("Just a word.")
         run.font.size = Pt(24)
         run.bold = False
+        doc.save(f"{sub[i]}.docx")
 
 list0 = []
 list1 = []
