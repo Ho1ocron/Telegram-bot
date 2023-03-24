@@ -1,9 +1,10 @@
 import telebot
-import generator
 from telebot import types
+import generator
+
 
 generator.opendocx()
-bot = telebot.TeleBot(token="Token")
+bot = telebot.TeleBot(token="5612661926:AAFd2ou6nvNmIA8GqzPH-mCQdpQglImNz60")
 
 
 @bot.message_handler(content_types=['text'])
