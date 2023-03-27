@@ -1,10 +1,10 @@
 import telebot
-from telebot import types
 import generator
+from telebot import types
 
 
 generator.opendocx()
-bot = telebot.TeleBot(token="Token")
+bot = telebot.TeleBot(token="5612661926:AAFd2ou6nvNmIA8GqzPH-mCQdpQglImNz60")
 
 
 @bot.message_handler(content_types=['text'])
@@ -20,7 +20,7 @@ def reg(message):
             bot.register_next_step_handler(message, send_doc)
 
     if not message.text in commands.keys():
-        bot.send_message(message.chat.id, "He могу прочесть ваше сообщение. Введите /start.")
+        bot.send_message(message.chat.id, "He могу прочесть твое сообщение. Введи предмет повторно или введи /start.")
         bot.register_next_step_handler(message, reg)
 
 
@@ -32,6 +32,7 @@ def send_doc(message):
 
     for i in commands.keys():
         if i == message.text:
+            
             try:
                 doc = open(docs[i], "rb")
                 bot.send_document(message.chat.id, doc, docs[i])
@@ -42,17 +43,16 @@ def send_doc(message):
             bot.register_next_step_handler(message, fun[i])
 
     if not message.text in commands.keys():
-        bot.send_message(message.chat.id, "He могу прочесть ваше сообщение. Введите предмет повторно или введите /start.")
+        bot.send_message(message.chat.id, "He могу прочесть твое сообщение. Введи предмет повторно или введи /start.")
         bot.register_next_step_handler(message, send_doc)
 
 
 commands = {word: "Хорошо, вот твой справочник. Можешь выбрать другой предмет." for word in generator.sub.keys()}
-commands["/start"] = "Привет, я помогу тебе c учебой. Напиши название предмета, и я скину тебе документацию. Вы можете в любой момент ввести /start и перезапустить меня."
-
-docs = {word: f"{generator.sub[word]}.docx" for word in generator.sub.keys()}
+commands["/start"] = "Привет, я помогу тебе c учебой. Напиши название предмета, и я скину тебе документацию. Ты можешь в любой момент ввести /start и перезапустить меня."
 
 fun = {word: send_doc for word in generator.sub.keys()}
 fun["/start"] = send_doc
 
+docs = {word: f"{generator.sub[word]}.docx" for word in generator.sub.keys()}
 
 bot.polling(non_stop=True)

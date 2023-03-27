@@ -4,25 +4,19 @@ from docx import Document
 
 
 def opendocx():
-    for i in sub.keys():
-        run = doc.add_paragraph().add_run("Just a word.")
-        run.font.size = Pt(24)
-        run.bold = False
-        doc.save(f"{sub[i]}.docx")
-
-list0 = []
-list1 = []
+    run = doc.add_paragraph().add_run("Just a word.") 
+    run.font.size = Pt(24)
+    run.bold = False
+    for i in sub.keys(): 
+        doc.save(f"{sub[i]}.docx") 
+        
 
 path = os.path.abspath(__file__)
 path = path.replace("\generator.py", "")
-print(path)
 
-tree = list(os.walk(path))
-for i in tree[0]:
-    if type(i) == list:
-        list0.append(i)
-for i in list0[1]:
-    list1.append(i)
+
+folder = list(os.walk(path))
+subj = [i for i in folder[0][2]]
 
 doc = Document()
 
@@ -37,13 +31,14 @@ sub = {
     "История": "History",
     "Обществознание": "Social_Studies",
     "ОБЖ": "OBJ",
-    "Информатика": "IT"
+    "Информатика": "IT",
+    "Программирование": "Programming"
 }
 
 if __name__ == "__main__":
     for i in sub.values():
         i = f"{i}.docx"
-        if i in list1:
+        if i in subj:
             break
         else:
             opendocx()
