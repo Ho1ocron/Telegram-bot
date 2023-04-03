@@ -2,7 +2,7 @@ import telebot
 import generator
 from telebot import types
 
-bot = telebot.TeleBot(token="5612661926:AAGi2cVBLFffgDvhBujxzkIZfWwUQJ2V6fo")
+bot = telebot.TeleBot(token="Token")
 
 ssubj = None
 
