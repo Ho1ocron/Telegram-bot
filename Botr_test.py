@@ -4,7 +4,7 @@ import time
 from telebot import types
 text = []
 text1 = []
-bot = telebot.TeleBot(token="5612661926:AAGi2cVBLFffgDvhBujxzkIZfWwUQJ2V6fo")
+bot = telebot.TeleBot(token="Token")
 
 ssubj = None #: This is the name of the subj that user chose. While he don't make the choice it is None
 
